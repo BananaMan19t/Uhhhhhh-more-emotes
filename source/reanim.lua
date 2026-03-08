@@ -3429,11 +3429,30 @@ do
 		MobileShiftlock.Image = states[false]
 		local state = false
 		AddToRenderStep(function()
+			local playerGui = Player:FindFirstChildOfClass("PlayerGui")
+			local touchGui = playerGui and playerGui:FindFirstChild("TouchGui")
+			if not touchGui or not touchGui.Enabled then
+				MobileShiftlock.Visible = false
+				return
+			end
+			local touchFrame = touchGui and touchGui:FindFirstChild("TouchControlFrame")
+			local jumpButton = touchFrame and touchFrame:FindFirstChild("JumpButton")
+			if not jumpButton then
+				MobileShiftlock.Visible = false
+				return
+			end
 			if state ~= Reanimate.Shiftlocked then
 				state = Reanimate.Shiftlocked
 				MobileShiftlock.Image = states[state]
 			end
-			MobileShiftlock.Visible = not not (Reanimate.Character and UserInputService.TouchEnabled)
+			MobileShiftlock.Visible = not not Reanimate.Character
+			local pos = jumpButton.AbsolutePosition - SCREENGUI.AbsolutePosition
+			local size = jumpButton.AbsoluteSize
+			local ratio = 4 / 7
+			pos += Vector2.new(-size.X * (ratio + 0.2), size.Y * (1 - ratio))
+			size *= ratio
+			MobileShiftlock.Position = UDim2.fromOffset(pos.X, pos.Y)
+			MobileShiftlock.Size = UDim2.fromOffset(size.X, size.Y)
 		end)
 		MobileShiftlock.Activated:Connect(function()
 			Reanimate.Shiftlocked = Reanimate.ShiftlockEnabled and not Reanimate.Shiftlocked

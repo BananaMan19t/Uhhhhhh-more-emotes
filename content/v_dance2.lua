@@ -643,7 +643,7 @@ AddModule(function()
 	local animator2 = nil
 	local instances = {}
 	local modelcf = {}
-	local HIDECF = CFrame.new(0, -9e9, 0)
+	local HIDECF = CFrame.new(0, -10000, 0)
 	local function pivotto(bp, cf)
 		if modelcf[bp] ~= cf then
 			modelcf[bp] = cf
