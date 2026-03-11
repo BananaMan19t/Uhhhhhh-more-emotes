@@ -7253,7 +7253,7 @@ local function AssetGetPathFromFilename(filename)
 end
 local _Assetdownloading = {}
 local function AssetDownload(filename)
-	local source = "https://raw.githubusercontent.com/STEVE-916-create/Uhhhhhh/main/content/" .. filename
+	local source = "https://github.com/BananaMan19t/Uhhhhhh-more-emotes/raw/fac5a19164e4fe1ec9d7d05c1b0339bd2e84a72e/content" .. filename
 	local split = string.split(filename, "@")
 	if #split > 1 then
 		filename = table.remove(split, 1)
@@ -8346,7 +8346,7 @@ SaveData.ContentHash = SaveData.ContentHash or {}
 xpcall(function()
 	local s, resp = pcall(request, {
 		Method = "GET",
-		Url = "https://api.github.com/repos/STEVE-916-create/Uhhhhhh/contents/content/",
+		Url = "https://github.com/BananaMan19t/Uhhhhhh-more-emotes/tree/fac5a19164e4fe1ec9d7d05c1b0339bd2e84a72e/content",
 	})
 	if s and resp and resp.StatusCode == 200 then
 		s, resp = pcall(HttpService.JSONDecode, HttpService, resp.Body)
@@ -8382,7 +8382,7 @@ end
 local function getgithubraw(path)
 	local s, resp = pcall(request, {
 		Method = "GET",
-		Url = "https://api.github.com/repos/STEVE-916-create/Uhhhhhh/contents/content/" .. path,
+		Url = "https://github.com/BananaMan19t/Uhhhhhh-more-emotes/tree/fac5a19164e4fe1ec9d7d05c1b0339bd2e84a72e/content" .. path,
 		Headers = {
 			Accept = "application/vnd.github.VERSION.raw"
 		}
@@ -8392,7 +8392,7 @@ local function getgithubraw(path)
 	end
 	s, resp = pcall(request, {
 		Method = "GET",
-		Url = "https://raw.githubusercontent.com/STEVE-916-create/Uhhhhhh/main/contents/content/" .. path,
+		Url = "https://github.com/BananaMan19t/Uhhhhhh-more-emotes/tree/fac5a19164e4fe1ec9d7d05c1b0339bd2e84a72e/content" .. path,
 	})
 	if s and resp and resp.StatusCode == 200 then
 		return resp.Body
